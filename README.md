@@ -1,2 +1,2 @@
 # Agricultural-products-sales-platform
-powered by vue3 and springboot
+Powered by vue3 and springboot.
