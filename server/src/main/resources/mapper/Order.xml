@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.taicang.server.mapper.OrderMapper">
+    <!-- 根据订单ID查询订单信息 -->
+    <select id="selectById" resultType="com.taicang.server.entity.Order" parameterType="java.lang.Integer">
+        SELECT
+            *
+        FROM
+            tb_order
+        WHERE
+            order_id = #{id}
+    </select>
+
+    <!-- 分页查询订单 -->
+    <select id="selectByPage" resultType="com.taicang.server.entity.Order">
+        SELECT
+            order_id, title, price, content, order_status, type, picture, own_name, cooperation_name, create_time, update_time, address
+        FROM
+            tb_order
+                LIMIT #{start}, #{pageSize}
+    </select>
+
+    <!-- 查询订单总数 -->
+    <select id="countTotalRows" resultType="int">
+        SELECT COUNT(*) FROM tb_order
+    </select>
+
+    <!-- 添加订单 -->
+    <insert id="insert">
+        INSERT INTO tb_order(title, price, content, order_status, type, picture, own_name, cooperation_name, create_time, update_time, address)
+        VALUES(#{title}, #{price}, #{content}, #{order_status}, #{type}, #{picture}, #{own_name}, #{cooperation_name}, #{create_time}, #{update_time}, #{address})
+    </insert>
+
+    <!-- 更新订单 -->
+    <update id="update">
+        UPDATE tb_order
+        <set>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="order_status != null">
+                order_status = #{order_status},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="picture != null">
+                picture = #{picture},
+            </if>
+            <if test="own_name != null">
+                own_name = #{own_name},
+            </if>
+            <if test="cooperation_name != null">
+                cooperation_name = #{cooperation_name},
+            </if>
+            <if test="create_time != null">
+                create_time = #{create_time},
+            </if>
+            <if test="update_time != null">
+                update_time = #{update_time},
+            </if>
+            <if test="address != null">
+                address = #{address}
+            </if>
+        </set>
+        WHERE order_id = #{order_id}
+    </update>
+
+
+
+    <!-- 删除订单 -->
+    <delete id="delete">
+        DELETE FROM tb_order
+        WHERE order_id = #{order_id}
+    </delete>
+
+    <!-- 根据订单title模糊查询订单 -->
+    <select id="selectByTitle" resultType="com.taicang.server.entity.Order">
+        SELECT
+            order_id, title, price, content, order_status, type, picture, own_name, cooperation_name, create_time, update_time, address
+        FROM
+            tb_order
+        WHERE
+            title LIKE CONCAT('%', #{title}, '%')
+    </select>
+
+    <!-- 查找自增主键 -->
+    <select id="selectLastInsertId" resultType="int">
+        SELECT LAST_INSERT_ID()
+    </select>
+
+    <!-- 获取所有Order -->
+    <select id="getAllOrders" resultType="com.taicang.server.entity.Order">
+        SELECT
+            *
+        FROM
+            tb_order
+    </select>
+
+</mapper>

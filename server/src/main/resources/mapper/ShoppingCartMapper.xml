@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taicang.server.mapper.ShoppingCartMapper">
+    <insert id="addToCart">
+        INSERT INTO tb_shoppingcart (order_id, count, own_name, create_time, update_time)
+        VALUES (#{order_id}, #{count}, #{own_name},  #{create_time}, #{update_time})
+    </insert>
+
+    <select id="findByOwner" resultType="com.taicang.server.entity.ShoppingCart">
+        SELECT * FROM tb_shoppingcart WHERE own_name = #{own_name}
+    </select>
+
+    <delete id="removeFromCart">
+        DELETE FROM tb_shoppingcart WHERE shopping_id = #{shopping_id}
+    </delete>
+
+    <update id="updateCart">
+        UPDATE tb_shoppingcart
+        SET count = #{count},
+            update_time = #{update_time}
+        WHERE shopping_id = #{shopping_id}
+    </update>
+</mapper>

@@ -1,0 +1,26 @@
+# 忽略所有编译产物和构建文件
+target/
+bin/
+*.class
+
+# 忽略所有IDE和编辑器生成的文件
+.idea/
+.vscode/
+*.iml
+
+# 忽略日志文件
+*.log
+
+# 忽略临时文件
+*.tmp
+
+# 忽略操作系统生成的文件
+.DS_Store
+Thumbs.db
+
+# 忽略配置文件中的敏感信息（需要根据需要自定义）
+config/secrets.yml
+.env
+
+# 忽略history文件
+.history
