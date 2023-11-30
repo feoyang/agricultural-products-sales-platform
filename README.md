@@ -1,4 +1,4 @@
-# agricultural-products-sales-platform
+# Agricultural Products Sales Platform
 
 Powered by Vue 3 and Spring Boot.
 
